@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "vision-portal-adobe-clean";
+  src: url("/etc.clientlibs/vision-portal/clientlib-adobe-font/resources/fonts/AdobeClean-Regular.ttf") format("truetype");
+}
+
+html * {
+    font-family: vision-portal-adobe-clean,adobe-clean,adobe clean,Helvetica,Arial,sans-serif !important;
+}

@@ -1,0 +1,6 @@
+{
+  "user.mapping":[
+    "aem-guides-wknd.core:readService=[xlstudio_read]",
+    "aem-guides-wknd.core:writeService=[xlstudio_write]"
+  ]
+}

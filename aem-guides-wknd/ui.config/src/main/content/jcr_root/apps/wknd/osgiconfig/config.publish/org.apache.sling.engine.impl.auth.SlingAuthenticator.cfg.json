@@ -1,0 +1,6 @@
+{
+  "sling.auth.requirements":[
+    "-/system/sling/login/j_security_check",
+    "+/content/vision-portal"
+  ]
+}

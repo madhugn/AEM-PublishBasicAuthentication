@@ -1,0 +1,21 @@
+{
+    "scripts": [
+		"create path (sling:Folder) /content/dam/vision-portal",
+		"create path (sling:OrderedFolder) /content/dam/vision-portal",
+		"create service user xlstudio_read,xlstudio_write",
+		"set ACL on /content \r\n allow jcr:read for xlstudio_read \r\n end",
+		"set ACL on /content/dam/vision-portal \r\n allow jcr:read for xlstudio_read \r\n end",
+		"set ACL on /var \r\n allow jcr:read for xlstudio_read \r\n end",
+		"set ACL on /tmp \r\n allow jcr:read for xlstudio_read \r\n end",
+		"set ACL on /etc \r\n allow jcr:read for xlstudio_read \r\n end",
+		"set ACL on /conf \r\n allow jcr:read for xlstudio_read \r\n end",
+		"set ACL on /home \r\n allow jcr:read for xlstudio_read \r\n end",
+		"set ACL on /content \r\n allow jcr:all for xlstudio_write \r\n end",
+		"set ACL on /content/dam/vision-portal \r\n allow jcr:all for xlstudio_write \r\n end",
+		"set ACL on /var \r\n allow jcr:all for xlstudio_write \r\n end",
+		"set ACL on /tmp \r\n allow jcr:all for xlstudio_write \r\n end",
+		"set ACL on /conf \r\n allow jcr:all for xlstudio_write \r\n end",
+		"set ACL on /etc \r\n allow jcr:all for xlstudio_write \r\n end",
+		"set ACL on /home \r\n allow jcr:all for xlstudio_write \r\n end"
+	]
+}

@@ -1,0 +1,35 @@
+{
+  "defaultRedirectUrl":"/content/wknd.html",
+  "userIntermediatePath":"/oktaSSO",
+  "serviceProviderEntityId":"$[env:saml_serviceProviderEntityId]",
+  "idpIdentifier":"$[env:saml_idpIdentifier]",
+  "idpCertAlias":"$[env:saml_idpCertAlias]",
+  "defaultGroups":[
+    "evp-common-confidential"
+  ],
+  "idpUrl":"$[env:saml_idpUrl]",
+  "logoutUrl":"$[env:saml_logoutUrl]",
+  "assertionConsumerServiceURL":"$[env:saml_assertionConsumerServiceURL]",
+  "nameIdFormat":"urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
+  "synchronizeAttributes":[
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress=profile/email",
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname=profile/familyName",
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname=profile/givenName"
+  ],
+  "identitySyncType":"default",
+  "service.ranking:Integer":5002,
+  "idpHttpRedirect":false,
+  "createUser":true,
+  "userIDAttribute": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+  "useEncryption": false,
+  "handleLogout":true,
+  "storeSAMLResponse": false,
+  "addGroupMemberships": true,
+  "groupMembershipAttribute": "http://schemas.microsoft.com/ws/2008/06/identity/claims/groups",
+  "clockTolerance": "60",
+  "digestMethod": "http://www.w3.org/2001/04/xmlenc#sha256",
+  "signatureMethod": "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
+  "path":[
+    "/content/gubby-portal"
+  ]
+}

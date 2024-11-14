@@ -1,0 +1,15 @@
+{
+    "scripts": [
+        "create path (nt:folder) /libs",
+        "create path (nt:folder) /libs/wcm",
+        "create path (nt:folder) /libs/wcm/core",
+        "create path (sling:Folder) /libs/wcm/core/content",
+        "create path (cq:Page) /libs/wcm/core/content/sites",
+        "create path (nt:unstructured) /libs/wcm/core/content/sites/jcr:content",
+        "create path (nt:unstructured) /libs/wcm/core/content/sites/jcr:content/actions",
+        "create path (nt:unstructured) /libs/wcm/core/content/sites/jcr:content/actions/secondary",
+        "create path (nt:unstructured) /libs/wcm/core/content/sites/jcr:content/actions/secondary/create",
+        "create group hide-sites-damFolders",
+        "set ACL on /libs/wcm/core/content/sites/jcr:content/actions/secondary/create \r\n deny jcr:read for hide-sites-damFolders \r\n end"
+    ]
+}

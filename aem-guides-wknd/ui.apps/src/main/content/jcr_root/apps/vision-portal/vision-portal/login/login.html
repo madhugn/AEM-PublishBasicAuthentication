@@ -1,0 +1,292 @@
+<style>
+          .loginContainer {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .left-panel {
+            background-color: #F2EDE4;;
+            color: white;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .logo-container img {
+            height: 90px;
+            margin: 10px;
+        }
+        .fancy-x {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px;
+            color:#ED2224;
+        }
+        .right-panel {
+            background-color: white;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .right-panel h2 {
+            font-size: 1.5em;
+            color: #555;
+            margin: 0 0 20px 0;
+        }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 90%;
+        }
+        .button-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            font-size: 1em;
+            color: #000000;
+            text-decoration: none;
+            border: 1px solid #ED2224;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+        .button-link:hover {
+            background-color: #999999;
+            color: white;
+        }
+        .button-link svg {
+            fill: #D35400;
+            transition: fill 0.3s;
+        }
+        .button-link:hover svg {
+            fill: white;
+        }
+        .collapsible-content {
+            display: block;
+            margin-top: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .collapsible-content label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .collapsible-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .submit-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #ED2224;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            float: right;
+            cursor:pointer;
+        }
+        .submit-button:hover {
+            background-color: #B03A2E;
+        }
+        .additional-links {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .additional-links a {
+            color: #ED2224;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .additional-links a:hover {
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            .loginContainer {
+                flex-direction: row;
+            }
+            .left-panel, .right-panel {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-panel .logo-container {
+                flex-direction: column;
+            }
+            .left-panel .fancy-x {
+                font-size: 2em;
+            }
+            .right-panel h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button-link {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            .submit-button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+<div class = "loginContainer" >
+    <div class="left-panel">
+        <div class="logo-container">
+            <img id="customerLogo" src="/content/dam/vision-portal/common/customer.svg" alt="First Logo">
+            <div class="fancy-x">x</div>
+            <img src="/content/dam/vision-portal/common/adobe.svg" alt="Second Logo">
+        </div>
+    </div>
+    <div class="right-panel">
+        <div class="login-container">
+            <form method="POST" action="/system/sling/login/j_security_check">
+                <div class="button-link collapsible-content" id="otherUsersContent">
+                    <div id="accountName" style="padding-bottom: 20px;"> Non-Adobe </div>
+                    <div style="padding-left: 20px;padding-right:20px;">
+                        <label for="username"><div>Corporate Email</div></label>
+                        <input type="email" id="username" name="j_username" placeholder="Provide your registered corporate email address">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" name="j_password" placeholder="Type your password">
+
+                        <input type="hidden" id="sling-auth-redirect-signin" name="sling.auth.redirect" value="">
+                        <input class="submit-button" type="submit" value="Login">
+                        <div class="additional-links">
+                            <a href="/content/wknd/register.html">Register</a>
+                            <a href="/content/wknd/resetPassword.html?message=initiate">Forgot Password?</a>
+                        </div>
+                        <p class="failure register-text " data-sly-test="${request.requestParameterMap['j_reason'][0].toString=='invalid_login'}">Username and Password don't match or your account does not exist.</p>
+                        <p class="failure register-text " data-sly-test="${request.requestParameterMap['j_reason'][0].toString=='account_not_found'}">Username and Password don't match or your account does not exist.</p>
+                    </div>
+                </div>
+            </form>
+            <a href="/system/sling/login?resource=/content/gubby-portal/AdobeXAdobe.html&saml_request_path=/content/wknd/CustomerXAdobe.html" id="adobeSsoLogin" class="button-link">
+                Adobe Employees (SSO)
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M19 12l-7 8v-6H3v-4h9V4l7 8z"/></svg>
+            </a>
+        </div>
+    </div>
+    <script>
+    var defaultWebsiteName = "/content/wknd/CustomerXAdobe.html";
+    var logoPath = "/content/dam/vision-portal/common/customer.svg";
+    var defaultImagePath = "/content/dam/vision-portal/common/customer.svg";
+
+    $(document).ready(function() {
+    var emailInput = document.getElementById("username");
+    emailInput.addEventListener("blur", handleEmailBlur);
+
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('resource')) {
+    var websiteName = urlParams.get('resource');
+    document.getElementById("sling-auth-redirect-signin").value = websiteName; //update the redirect
+    var matches = websiteName.match(/\/([^\/]+?)X/); // Match the text between "/" and "X" in a non-greedy way
+    var domainNameFromWebsiteName = matches && matches.length > 1 ? matches[1] : null;
+    if (domainNameFromWebsiteName) {
+      document.getElementById("accountName").innerHTML=domainNameFromWebsiteName
+      updateSsoUrl(domainNameFromWebsiteName);//Update the SSO URL here
+      var lowercaseDomainName = domainNameFromWebsiteName.charAt(0).toLowerCase() +domainNameFromWebsiteName.slice(1);
+      updateCustomerLogo(lowercaseDomainName); //update the logo
+    }
+    }
+  });
+
+// Extract the company name between . and @
+    function extractDomain(email) {
+    var domainRegex = /@([^\.]+)\./;
+    var matches = email.match(domainRegex);
+    if (matches && matches.length > 1) {
+        return matches[1];
+    } else {
+        return null;
+    }
+    }
+
+    function handleEmailBlur() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('resource')) { // If url already has a redirection and resource parameter, do not proceed further
+    return;
+    }
+    var emailInput = document.getElementById("username");
+    var email = emailInput.value;
+    if (email) {
+    var domainName = extractDomain(email);
+    if (domainName) {
+    document.getElementById("accountName").innerHTML=domainName.charAt(0).toUpperCase() + domainName.slice(1);
+
+    updateCustomerLogo(domainName);
+    document.getElementById("sling-auth-redirect-signin").value = getRedirectWebsitePath(domainName); //update the redirect
+    updateSsoUrl(domainName); //update Adobe SSO URL
+    } else {
+     document.getElementById("sling-auth-redirect-signin").value = defaultWebsiteName;
+     updateCustomerLogo(null); //update default customer logo
+    }
+    }
+  }
+
+function getImagePath(domainName) {
+return domainName!=null? logoPath.replaceAll("customer", domainName):null;
+}
+
+function updateCustomerLogo(domainName) {
+ var imagePath = getImagePath(domainName);
+ var imageElement = document.getElementById("customerLogo"); ;
+  if (imagePath) {
+  imageElement.src = imagePath;
+  } else {
+  imageElement.src = defaultImagePath;
+  }
+}
+
+function getRedirectWebsitePath(domainName) {
+ domainName =  domainName.charAt(0).toUpperCase() +domainName.slice(1);
+ return defaultWebsiteName.replace("Customer", domainName);
+}
+
+
+function updateSsoUrl(domainName) {
+var anchorElement = document.getElementById("adobeSsoLogin");
+if (anchorElement && domainName) {
+ domainName =  domainName.charAt(0).toUpperCase() +domainName.slice(1);
+ var href = anchorElement.getAttribute("href");
+ var replacedHref = href.replace("Customer", domainName);
+ anchorElement.setAttribute("href", replacedHref);
+}
+}
+    </script>
+</div>
+
+
+
+

@@ -1,0 +1,12 @@
+// Configuration created by Apache Sling JCR Installer
+{
+  "allow.hosts":[
+    "adobe.okta.com"
+  ],
+  "filter.methods":[
+    "POST",
+    "PUT"
+  ],
+  "allow.hosts.regexp":["adobe.okta.com"],
+  "allow.empty":true
+}

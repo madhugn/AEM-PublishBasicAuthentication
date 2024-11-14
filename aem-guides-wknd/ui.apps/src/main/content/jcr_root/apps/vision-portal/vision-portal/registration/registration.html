@@ -1,0 +1,176 @@
+<style>
+        .login-outer-container {
+            #background-color: #f2f2f2;
+            #margin: 0;
+            #padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            flex-basis: 50%;
+            flex-grow:1;
+            text-align:left !important;
+        }
+        .login-container {
+            #background-color: #ffffff;
+            padding: 50px;
+            border-radius: 5px;
+            
+            flex-basis: 50%;
+           flex-grow:1;
+        }
+        .login-container h1 {
+              margin-bottom: 20px;
+        }
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .login-container label {
+            margin-bottom: 5px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"],
+        .login-container input[type="submit"]{
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width:60%;
+        }
+        .login-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px !important;
+            aligh:left;
+            width:25% !important;
+        }
+        .login-container input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width:64%;
+        }
+     
+         .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 50%;
+           flex-grow:1;
+        }
+
+        .logo {
+            width: 20%; /* Adjust the width as needed */
+            margin: 0 10px; /* Adjust the margin between logos */
+        }
+
+        .x-mark {
+            font-size: 36px;
+            margin: 0 10px;
+        }
+        
+        p {
+        text-align:left !important;
+        }
+        
+        h1 {
+           padding-bottom: 20px;
+           font-size: 42px !important;
+        }
+        .cmp-text p{
+            font-size: 12px !important;
+        }
+
+        p {
+            font-size: 15px;
+            text-align: left;
+        }
+    </style>
+<div style=" padding-top: 40px"/>
+<div class="login-outer-container" >
+    <div class="logo-container" height=100%>
+        <img class="logo" src="/content/dam/vision-portal/common/customer.svg">
+        <div class="x-mark">&#xD7;</div>
+        <img class="logo" src="/content/dam/vision-portal/common/adobe.svg">
+
+        </img>
+    </div>
+
+    <div class="login-container">
+        <h1>Create your account</h1>
+        <form method="POST" action="/content/wknd/servletEndPoints/registration.do">
+            <p class="failure register-text "
+               data-sly-test="${request.requestParameterMap['message'][0].toString=='passwordMismatch'}">Passwords don't
+                match. Please retry</p>
+            <p class="failure register-text "
+               data-sly-test="${request.requestParameterMap['message'][0].toString=='userAlreadyExists'}">The user ID
+                already exists.</p>
+            <p class="failure register-text " data-sly-test="${request.requestParameterMap['message'][0].toString=='serverError'}">A
+                server error occurred while registering. Contact XLStudio team.</p>
+            <p class="failure register-text " data-sly-test="${request.requestParameterMap['message'][0].toString=='invalidEmail'}">Please provide a valid email ID</p>
+            <p class="failure register-text " data-sly-test="${request.requestParameterMap['message'][0].toString=='domainNotRegistered'}">Registration failed! Please register with an email ID associated with the customer domain.</p>
+            <p class="failure register-text " data-sly-test="${request.requestParameterMap['message'][0].toString=='passwordEmpty'}">Please ensure that both password fields are not empty</p>
+            <p class="failure register-text " data-sly-test="${request.requestParameterMap['message'][0].toString=='adobeSSOLoginOnly'}">Adobe employees are not allowed to register on the site. Please use the SSO (Adobe Employees (SSO)) option on login page. </p>
+            <p class="success register-text " data-sly-test="${request.requestParameterMap['message'][0].toString=='success'}">User
+                registration has been successful. Please check your email and activate the account.</p>
+            <label for="firstName">Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Type your name">
+            <label for="role">Role</label>
+            <select id="role" name="role" placeholder="choose">
+                <option value="choose">Choose</option>
+                <option value="Marketing">Marketing</option>
+                <option value="IT">IT</option>
+                <option value="Finance">Finance</option>
+                <option value="Product">Product</option>
+                <option value="Operations">Operations</option>
+                <option value="Legal">Legal</option>
+                <option value="C-Suite">C-Suite</option>
+            </select>
+            <label for="username">Email ID (Corporate Email ID) </label>
+            <input type="text" id="username" name="username" placeholder="Corporate email">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Type your password">
+            <label for="passwordConfirm">Retype Password</label>
+            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Retype your password">
+            <input type="hidden" id="siteName" name="siteName" value="">
+            <input type="submit" value="Create account">
+        </form>
+        <p class="register-text">Already have an account? <a href="/content/wknd/login.html">Sign in</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+    var emailInput = document.getElementById("username");
+    emailInput.addEventListener("blur", handleEmailBlur);
+    });
+
+    function handleEmailBlur() {
+    var emailInput = document.getElementById("username");
+    var email = emailInput.value;
+    if (email) {
+    var domainName = extractDomain(email);
+    if (domainName) {
+    document.getElementById("siteName").value = domainName;
+    }
+    }
+  }
+
+// Extract the company name between . and @
+    function extractDomain(email) {
+    var domainRegex = /@([^\.]+)\./;
+    var matches = email.match(domainRegex);
+    if (matches && matches.length > 1) {
+        return matches[1];
+    } else {
+        return null;
+    }
+    }
+</script>
+<div style=" padding-top: 60px"/>

@@ -1,0 +1,11 @@
+{
+  "idpUrl":"$[env:saml_idpUrl]",
+  "edgeConfigId": "$[env:analytics_edgeConfigId]",
+  "launchURL": "$[env:analytics_launchURL]",
+  "imsOrgId": "$[env:genAIimsOrgId]",
+  "clientSecret": "$[secret:genAIclientSecret]",
+  "apiKey": "$[env:genAIapiKey]",
+  "code": "$[secret:genAIcode]",
+  "fireFallUrl": "$[env:genAIfireFallUrl]",
+  "oauthEndPoint": "$[env:genAIoauthEndPoint]"
+}

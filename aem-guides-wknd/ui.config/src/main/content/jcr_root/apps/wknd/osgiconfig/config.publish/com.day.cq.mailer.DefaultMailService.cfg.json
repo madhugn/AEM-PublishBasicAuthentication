@@ -1,0 +1,12 @@
+{
+  "smtp.host": "$[env:AEM_PROXY_HOST;default=proxy.tunnel]",
+  "smtp.port": "$[env:SMTP_PORT;default=30465]",
+  "smtp.user": "$[env:EMAIL_USERNAME;default=no-reply.gubby@gmail.com]",
+  "smtp.password": "$[secret:EMAIL_PASSWORD]",
+  "from.address": "no-reply-admin@gubby.com",
+  "smtp.ssl": "$[env:SMTP_SSL;default=false]",
+  "smtp.starttls": "$[env:SMTP_STARTTLS;default=true]",
+  "smtp.requiretls": "$[env:SMTP_REQUIRETLS;default=true]",
+  "debug.email": "$[env:SMTP_DEBUG;default=false]",
+  "oauth.flow": false
+}
